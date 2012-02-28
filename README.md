@@ -13,6 +13,7 @@ Any `input` element may contain:
 * `data-errormessage` a generic error message
 
 [Validity state](http://dev.w3.org/html5/spec/constraints.html#validitystate) specific error messages:
+
 * `data-errormessage-value-missing`
 * `data-errormessage-type-mismatch`
 * `data-errormessage-pattern-mismatch`
