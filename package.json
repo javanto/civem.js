@@ -1,0 +1,50 @@
+{
+  "name": "civem",
+  "version": "0.0.1",
+  "title": "CIVEM",
+  "author": {
+    "name": "Hannu Leinonen",
+    "email": "hleinone@gmail.com",
+    "url": "http://javanto.com"
+  },
+  "licences": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    },
+    {
+      "type": "GPL",
+      "url": "http://www.gnu.org/licenses/gpl.html"
+    }
+  ],
+  "description": "Custom Input Validation Error Messages",
+  "keywords": [
+    "custom", 
+    "input", 
+    "validation", 
+    "error", 
+	"messages",
+    "validate", 
+    "form", 
+	"message",
+	"translate",
+	"translation",
+	"i18n",
+	"internationalization",
+	"html5"
+  ],
+  "homepage": "http://github.com/javanto/civem.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/javanto/civem.js.git"
+  },
+  "files": [
+    "dist/{{= it.name}}.js", 
+    "dist/{{= it.name}}.min.js"
+  ],
+  "build": {
+    "directory": "dist",
+    "final_name": "{{= it.name}}",
+    "unique_name": "{{= it.name}}-{{= it.version}}"
+  }
+}
