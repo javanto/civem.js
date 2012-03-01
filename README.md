@@ -8,7 +8,7 @@ Grab the latest [download](https://github.com/javanto/civem.js/downloads) and us
 
 ## API
 
-Any `input` element may contain:
+Any `input`, `textarea` or `select` element may contain:
 
 * `data-errormessage` a generic error message
 
