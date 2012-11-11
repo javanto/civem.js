@@ -14,10 +14,10 @@ jQuery(function($) {
 			return true;
 
 		$(this)
-			.bind('input', function() {
+			.on('input', function() {
 				this.setCustomValidity('');
 			})
-			.bind('invalid', function() {
+			.on('invalid', function() {
 
 				var validity = this.validity,
 				    suffix = validity.valueMissing? 'value-missing' : validity.typeMismatch? 'type-mismatch' : validity.patternMismatch? 'pattern-mismatch' : validity.tooLong? 'too-long' : validity.rangeUnderflow? 'range-underflow' : validity.rangeOverflow? 'range-overflow' : validity.stepMismatch? 'step-mismatch' : validity.customError? 'custom-error' : '',
