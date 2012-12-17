@@ -2,9 +2,8 @@ desc("This is the default task.");
 task("default", function (params) {
   var fs = require("node-fs");
   var dot = require("dot");
-  var parser = require("uglify-js").parser;
-  var uglify = require("uglify-js").uglify;
-
+  var UglifyJS = require("uglify-js");
+  
   package(function(pkg) {
     console.log("Building " + pkg.title + " " + pkg.version);
     var files = fs.readdirSync("./src");
@@ -17,10 +16,15 @@ task("default", function (params) {
         define: /\{\{##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#\}\}/g, //compile time defs
         strip: false,
         varname: "it"})(pkg);
-      var ast = parser.parse(cmp);
-      ast = uglify.ast_mangle(ast);
-      ast = uglify.ast_squeeze(ast);
-      var min = uglify.gen_code(ast);
+      var ast = UglifyJS.parse(cmp);
+      ast.figure_out_scope();
+      ast = ast.transform(UglifyJS.Compressor());
+      // need to figure out scope again so mangler works optimally
+      ast.figure_out_scope();
+      ast.compute_char_frequency();
+      ast.mangle_names();
+
+      var min = ast.print_to_string({ comments: true });
       var buildDirectory = pkg.build.directory? dot.template(pkg.build.directory)(pkg) : "dist";
       try {
         fs.rmdirSync("./" + buildDirectory);
