@@ -48,12 +48,12 @@ task("publish", ["default"], function (params) {
     gits.git(".", ["tag", "-a", "-m", "Publishing new version", "v" + tagName], function() {
       gits.git(".", ["push", "--tags"], function() {
         console.log("Created remote tag " + tagName);
-        upload(function(error, result) {
+        upload(function(fileName, error, result) {
           if (error) {
-            console.log(error);
+            console.log("Uploading " + fileName + " to GitHub failed: " + error);
             return;
           }
-          console.log("Successfully uploaded to GitHub");
+          console.log("Successfully uploaded " + fileName + " to GitHub");
         });
       });
     });
@@ -104,11 +104,11 @@ function upload(callback) {
       password: options.password
     }, function(error, response, body) {
       if (error) {
-        callback(error, null);
+        callback(fileName, error, null);
         return;
       }
       if (response.statusCode !== 201) {
-        callback(body.message, null);
+        callback(fileName, body.message, null);
         return;
       }
 
@@ -127,14 +127,14 @@ function upload(callback) {
         }
       }, {multipart: true}, function(error, response, body) {
         if (error) {
-          callback(error, null);
+          callback(fileName, error, null);
           return;
         }
         if (response.statusCode !== 201) {
-          callback(body.message, null);
+          callback(fileName, body.message, null);
           return;
         }
-        callback(null, body);
+        callback(fileName, null, body);
       });
     });
   }
