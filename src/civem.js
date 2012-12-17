@@ -15,6 +15,7 @@
 			if (inputCallback) {
 				inputCallback(event);
 			}
+			event.target.checkValidity();
 		};
 	}
 
@@ -22,11 +23,11 @@
 		return function(event) {
 			var element = event.target;
 			var validity = element.validity;
-			var suffix = validity.valueMissing? "value-missing" : validity.typeMismatch? "type-mismatch" : validity.patternMismatch? "pattern-mismatch" : validity.tooLong? "too-long" : validity.rangeUnderflow ? "range-underflow" : validity.rangeOverflow? "range-overflow" : validity.stepMismatch? "step-mismatch" : validity.customError? "custom-error" : "";
+			var suffix = validity.valueMissing ? "value-missing" : validity.typeMismatch ? "type-mismatch" : validity.patternMismatch ? "pattern-mismatch" : validity.tooLong ? "too-long" : validity.rangeUnderflow ? "range-underflow" : validity.rangeOverflow ? "range-overflow" : validity.stepMismatch ? "step-mismatch" : validity.customError ? "custom-error" : "";
 			var specificErrormessage, genericErrormessage;
-			if (suffix && (specificErrormessage === element.getAttribute("data-errormessage-" + suffix))) {
+			if (suffix && (specificErrormessage = element.getAttribute("data-errormessage-" + suffix))) {
 				element.setCustomValidity(specificErrormessage);
-			} else if (genericErrormessage === element.getAttribute("data-errormessage")) {
+			} else if (genericErrormessage = element.getAttribute("data-errormessage")) {
 				element.setCustomValidity(genericErrormessage);
 			} else {
 				element.setCustomValidity(element.validationMessage);
@@ -57,16 +58,8 @@
 			if (!formElement.willValidate) {
 				continue;
 			}
-			var inputCallback;
-			if (formElement.oninput) {
-				inputCallback = formElement.oninput;
-			}
-			formElement.oninput = getInputHandler(inputCallback);
-			var invalidCallback;
-			if (formElement.oninvalid) {
-				invalidCallback = formElement.oninvalid;
-			}
-			formElement.oninvalid = getInvalidHandler(invalidCallback);
+			formElement.oninput = getInputHandler(formElement.oninput);
+			formElement.oninvalid = getInvalidHandler(formElement.oninvalid);
 		}
 	};
 
