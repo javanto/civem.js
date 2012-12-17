@@ -40,9 +40,8 @@ At [jsFiddle](http://jsfiddle.net/hleinone/njSbH/).
 1. Make your modifications
 1. Commit
 1. Make sure you have [node](http://nodejs.org/) and [npm](http://npmjs.org/) installed
-1. Install the required dependencies: `npm install node-fs dot uglify-js gits read needle`
-1. Install [jake](https://github.com/mde/jake): `npm install jake -g`
-1. Compile and minify: `jake` 
+1. Install [grunt](https://github.com/cowboy/grunt): `npm install -g grunt`
+1. Lint and minify: `grunt` 
 1. Test
 1. Create a pull request
 1. ???
