@@ -1,6 +1,6 @@
 # Custom Input Validation Error Messages
 
-Easily change the HTML5 validation error messages to whatever you wish. For translation or consistency with your server-side error messages.
+HTML5 form validation error messages are hard-coded to the browser. Civem.js lets you easily change them to whatever you wish. For translation or consistency with your server-side error messages. Civem.js does not depend on any library or framework, so you can use it without a doubt.
 
 ## Quick Start
 
