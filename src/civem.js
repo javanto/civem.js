@@ -58,7 +58,12 @@
 			if (!formElement.willValidate) {
 				continue;
 			}
-			formElement.oninput = getInputHandler(formElement.oninput);
+			console.log(formElement.tagName);
+			if (formElement.tagName === "SELECT" || formElement.tagName === "select") {
+				formElement.onchange = getInputHandler(formElement.onchange);
+			} else {
+				formElement.oninput = getInputHandler(formElement.oninput);
+			}
 			formElement.oninvalid = getInvalidHandler(formElement.oninvalid);
 		}
 	};
