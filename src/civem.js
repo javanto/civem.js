@@ -11,7 +11,14 @@
 (function() {
 	function getInputHandler(inputCallback) {
 		return function(event) {
-			event.target.setCustomValidity("");
+			if (event.target.type.toUpperCase() === "RADIO") {
+				var radioGroup = document.getElementsByName(event.target.name)
+				for (i = 0; i < radioGroup.length; i++) {
+					radioGroup[i].setCustomValidity("");
+				}
+			} else {
+				event.target.setCustomValidity("");
+			}
 			if (inputCallback) {
 				inputCallback(event);
 			}
@@ -59,7 +66,7 @@
 				continue;
 			}
 			console.log(formElement.tagName);
-			if (formElement.tagName === "SELECT" || formElement.tagName === "select") {
+			if (formElement.tagName.toUpperCase() === "SELECT" || formElement.type.toUpperCase() === "RADIO") {
 				formElement.onchange = getInputHandler(formElement.onchange);
 			} else {
 				formElement.oninput = getInputHandler(formElement.oninput);
@@ -69,8 +76,8 @@
 	};
 
 	if (window.addEventListener) {
-		window.addEventListener('load', civem, false);
+		window.addEventListener("load", civem, false);
 	} else if (window.attachEvent) {
-		window.attachEvent('onload', civem);
+		window.attachEvent("onload", civem);
 	}
 }());
