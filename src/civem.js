@@ -66,7 +66,7 @@
 				continue;
 			}
 			console.log(formElement.tagName);
-			if (formElement.tagName.toUpperCase() === "SELECT" || formElement.type.toUpperCase() === "RADIO") {
+			if (formElement.tagName.toUpperCase() === "SELECT" || formElement.type.toUpperCase() === "RADIO" || formElement.type.toUpperCase() === "CHECKBOX") {
 				formElement.onchange = getInputHandler(formElement.onchange);
 			} else {
 				formElement.oninput = getInputHandler(formElement.oninput);
