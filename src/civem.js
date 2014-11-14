@@ -65,7 +65,6 @@
 			if (!formElement.willValidate) {
 				continue;
 			}
-			console.log(formElement.tagName);
 			if (formElement.tagName.toUpperCase() === "SELECT" || formElement.type.toUpperCase() === "RADIO" || formElement.type.toUpperCase() === "CHECKBOX") {
 				formElement.onchange = getInputHandler(formElement.onchange);
 			} else {
