@@ -46,7 +46,7 @@
     "directory": "dist",
     "final_name": "{{= it.name}}",
     "unique_name": "{{= it.name}}-{{= it.version}}"
-  }
+  },
   "devDependencies": {
     "dot": "^1.0.3",
     "gits": "^0.1.8",
